@@ -1,4 +1,4 @@
-/* src/HTMLForm.module.css */
+/* 
 .formContainer {
   background-color: #fff;
   padding: 2rem;
@@ -95,4 +95,180 @@
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+} */
+
+/* src/HTMLForm.module.css */
+/* Enhanced flexbox styling */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between flex items */
+  padding: 2rem; /* Padding around the container */
+}
+
+.formContainer {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tableContainer {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow for depth */
+  overflow-x: auto; /* Allows horizontal scrolling if table overflows */
+}
+
+
+.formGroup {
+  margin-bottom: 1rem;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.formGroup input, .formGroup select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.error {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.success {
+  color: green;
+  font-size: 14px;
+}
+
+.saveButton {
+  background-color: #6a11cb;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.saveButton:hover {
+  background-color: #2575fc;
+}
+
+/* Enhancements for the table */
+.tableContainer {
+  background-color: #f9f9f9; /* Slightly different background color for contrast */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow for depth */
+  overflow-x: auto; /* Allows horizontal scrolling if table overflows */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 12px; /* Increased padding for better readability */
+  border: 1px solid #ddd; /* Lighter border for a cleaner look */
+}
+
+.table th {
+  background-color: #e9ecef; /* Lighter background for header */
+  color: #495057; /* Darker text color for header */
+  text-align: left;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f2f2f2; /* Alternating row colors for readability */
+}
+
+.table tr:hover {
+  background-color: #eaeaea; /* Highlight row on hover */
+}
+
+.table td {
+  color: #212529; /* Darker text color for better readability */
+}
+/* Additional styles for the copy button */
+.copyButton {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.copyButton:hover {
+  color: #0056b3;
+}
+
+.table th, .table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: left; /* Align text to the left */
+}
+
+.table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.tableContainer {
+  margin-top: 20px; /* Adds space above the table */
+}
+
+/* Add these styles to your existing CSS file */
+
+.copyButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #007bff;
+  margin-left: 5px;
+}
+
+.copyButton:hover {
+  color: #0056b3;
+}
+
+.deleteButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #dc3545;
+}
+
+.deleteButton:hover {
+  color: #c82333;
+}
+
+.tableContainer {
+  margin-top: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f4f4f4;
 }

@@ -62,7 +62,7 @@
   
   .mainContent {
     flex: 1;
-    padding: 1rem;
+    padding: 0rem;
   }
   
   .dashboardHeader {
@@ -98,3 +98,5 @@
       align-items: flex-start;
     }
   }
+
+  
