@@ -7,6 +7,7 @@ import ReactJSForm from './ReactJSForm'; // Import the ReactJSForm component
 import HTMLForm from './HTMLForm'; // Import the HTMLForm component
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome CSS
 import FastAPIForm from './FastAPIForm';
+import MachineForm from './MachineForm';
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -36,6 +37,10 @@ function Dashboard() {
     setShowForm('html');
   };
 
+  const handleMachinesClick = () => {
+    setShowForm('machines');
+  };
+
   const handleHomeClick = () => {
     setShowForm('home');
   };
@@ -53,6 +58,9 @@ function Dashboard() {
           </Link>
           <Link to="#" onClick={handleCredentialsClick} className={styles.navLink}>
             <i className="fas fa-key"></i> Credentials
+          </Link>
+          <Link to="#" onClick={handleMachinesClick} className={styles.navLink}>
+            <i className="fas fa-server"></i> Machines
           </Link>
           <Link to="#" onClick={handleHTMLClick} className={styles.navLink}>
             <i className="fab fa-html5"></i> HTML
@@ -78,6 +86,7 @@ function Dashboard() {
         <main>
           {showForm === 'home' && <div>Welcome to the Home Page</div>}
           {showForm === 'credentials' && <InputForm />}
+          {showForm === 'machines' && <MachineForm/>}
           {showForm === 'reactjs' && <ReactJSForm />}
           {showForm === 'html' && <HTMLForm />}
           {showForm === 'fastapi' && <FastAPIForm/>}

@@ -1,0 +1,101 @@
+
+.container {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f2f5;
+  padding: 30px;
+}
+
+.form {
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* width: 100%; */
+  width: 500px;
+  max-width: 500px;
+  box-sizing: border-box;
+}
+
+.form h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.formGroup input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Add styles for the signup button */
+.button {
+  background-color: #6A11CB; /* Green background */
+  border: none; /* Remove borders */
+  width: 100%; /* Full width */
+  color: white; /* White text */
+  padding: 15px 20px; /* Some padding */
+  text-align: center; /* Centered text */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Make the container inline-block */
+  font-size: 18px; /* Increase font size */
+  margin: 10px 0; /* Some margin */
+  cursor: pointer; /* Pointer/hand icon */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.button:hover {
+  background-color: #2575fc; /* Darker green on hover */
+}
+
+.button:disabled {
+  background-color: #ccc; /* Gray background when disabled */
+  cursor: not-allowed; /* Not-allowed cursor */
+}
+
+/* Spinner styles */
+.spinner {
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #000;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
