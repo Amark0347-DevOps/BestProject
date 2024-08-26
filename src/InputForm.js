@@ -529,7 +529,7 @@ function InputForm() {
           <input
             type="text"
             id="access_key"
-            placeholder='Enter Access Key'
+            placeholder=''
             value={access_key}
             onChange={(e) => setAccessKey(e.target.value)}
             className={styles.input}
@@ -588,7 +588,6 @@ function InputForm() {
       {/* Second flexbox to display fetched data */}
       {fetchedData.length > 0 && (
         <div className={styles.tableContainer}>
-          <h2>Fetched Data</h2>
           <table className={styles.table}>
             <thead>
               <tr>

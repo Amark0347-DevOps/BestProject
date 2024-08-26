@@ -272,4 +272,200 @@
   .table th {
     background-color: #f4f4f4;
   }
+  /* MachineForm.module.css */
+
+.container {
+    padding: 20px;
+  }
   
+  .formContainer {
+    margin-bottom: 20px;
+  }
+  
+  .formGroup {
+    margin-bottom: 15px;
+  }
+  
+  .input, .select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .error {
+    color: red;
+    font-size: 0.875em;
+  }
+  
+  .success {
+    color: green;
+    font-size: 0.875em;
+  }
+  
+  .saveButton {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .saveButton:disabled {
+    background-color: #ccc;
+  }
+  
+  .tableContainer {
+    margin-top: 20px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th, .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .table th {
+    background-color: #f4f4f4;
+  }
+  
+  .table td {
+    font-size: 0.875em;
+  }
+  
+  .table td .copyIcon {
+    cursor: pointer;
+    color: #007bff;
+  }
+/* MachineForm.module.css */
+
+.container {
+    padding: 20px;
+  }
+  
+  .formContainer {
+    margin-bottom: 20px;
+  }
+  
+  .formGroup {
+    margin-bottom: 15px;
+  }
+  
+  .input, .select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+
+  .tableContainer {
+    margin-top: 2rem;
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+    font-size: 16px;
+  }
+  
+  .table th, .table td {
+    padding: 12px 15px;
+    text-align: left;
+  }
+  
+  .table th {
+    background-color: #6a11cb;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  .table td {
+    border-bottom: 1px solid #eee;
+  }
+  
+  .table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .table td:last-child {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+  
+  .copyIcon {
+    margin-left: 10px;
+    cursor: pointer;
+    color: #6a11cb;
+  }
+  
+  .copyIcon:hover {
+    color: #2575fc;
+  }
+  
+  .actionButton {
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .stopButton {
+    background-color: #ff7043;
+    color: #fff;
+  }
+  
+  .stopButton:hover {
+    background-color: #ff5722;
+  }
+
+  .startButton {
+    background-color: #0da255;
+    color: #fff;
+  }
+  
+  .startButton:hover {
+    background-color: #ff5722;
+  }
+  
+  .removeTerminate {
+    background-color: #e53935;
+    color: #fff;
+  }
+  
+  .removeTerminate:hover {
+    background-color: #d32f2f;
+  }
+  
+  /* Spinner styles */
+  .loadingSpinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }

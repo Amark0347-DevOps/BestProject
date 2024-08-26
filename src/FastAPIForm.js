@@ -1,27 +1,34 @@
 import React, { useState } from 'react';
-import styles from './FastAPIForm.module.css';
-import LoadingSpinner from './LoadingSpinner'; // Import LoadingSpinner
-import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome CSS
+import Select from 'react-select';
+import styles from './ReactJSForm.module.css';
 
-function FastAPIForm() {
+const options = [
+  { value: 'mongodb', label: 'MongoDB' },
+  { value: 'postgresql', label: 'PostgreSQL' },
+  { value: 'mysql', label: 'MySQL' },
+  { value: 'redis', label: 'Redis' },
+];
+
+function ReactJSForm() {
   const [projectName, setProjectName] = useState('');
   const [repositoryLink, setRepositoryLink] = useState('');
-  const [fastapiPort, setFastapiPort] = useState('');
+  const [reactJSPort, setReactJSPort] = useState('');
   const [domainName, setDomainName] = useState('');
+  const [selectedDatabases, setSelectedDatabases] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
-  const [successMessage, setSuccessMessage] = useState('');
 
   const validate = () => {
     const newErrors = {};
     if (!projectName) newErrors.projectName = 'Project Name is required';
     if (!repositoryLink) newErrors.repositoryLink = 'Repository Link is required';
-    if (!fastapiPort) newErrors.fastapiPort = 'FastAPI Port is required';
+    if (!reactJSPort) newErrors.reactJSPort = 'ReactJS Port is required';
     if (!domainName) newErrors.domainName = 'Domain Name is required';
+    if (selectedDatabases.length === 0) newErrors.selectedDatabases = 'At least one database must be selected';
     return newErrors;
   };
 
-  const handleSave = async () => {
+  const handleSave = () => {
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -29,43 +36,20 @@ function FastAPIForm() {
     }
 
     setIsLoading(true);
-    setSuccessMessage('');
-    setErrors({});
-
-    try {
-      const token = localStorage.getItem('token'); // Retrieve token from local storage
-      const response = await fetch('http://localhost:4522/v1/fastapi/project', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`, // Include Authorization header
-        },
-        body: JSON.stringify({
-          projectName,
-          repositoryLink,
-          fastapiPort,
-          domainName,
-        }),
-      });
-
-      if (response.ok) {
-        setSuccessMessage('Data saved successfully');
-      } else if (response.status === 409) {
-        setErrors({ apiError: 'Data is already saved' });
-      } else {
-        const errorData = await response.json();
-        setErrors({ apiError: errorData.message || 'Failed to save data' });
-      }
-    } catch (error) {
-      setErrors({ apiError: 'Failed to save data' });
-    } finally {
+    // Simulate an API call
+    setTimeout(() => {
+      console.log('Project Name:', projectName);
+      console.log('Repository Link:', repositoryLink);
+      console.log('ReactJS Port:', reactJSPort);
+      console.log('Domain Name:', domainName);
+      console.log('Selected Databases:', selectedDatabases.map(option => option.label).join(', '));
       setIsLoading(false);
-    }
+    }, 2000);
   };
 
   return (
     <div className={styles.formContainer}>
-      <h2 className={styles.centeredText}><i className="fa-brands fa-python"></i> FastAPI Project</h2>
+      <h2 className={styles.centeredText}><i className="fab fa-react"></i> ReactJS Project</h2>
       <div className={styles.formGroup}>
         <label htmlFor="projectName">Project Name</label>
         <input
@@ -73,6 +57,7 @@ function FastAPIForm() {
           id="projectName"
           value={projectName}
           onChange={(e) => setProjectName(e.target.value)}
+          placeholder="Enter project name"
         />
         {errors.projectName && <span className={styles.error}>{errors.projectName}</span>}
       </div>
@@ -83,18 +68,20 @@ function FastAPIForm() {
           id="repositoryLink"
           value={repositoryLink}
           onChange={(e) => setRepositoryLink(e.target.value)}
+          placeholder="Enter repository link"
         />
         {errors.repositoryLink && <span className={styles.error}>{errors.repositoryLink}</span>}
       </div>
       <div className={styles.formGroup}>
-        <label htmlFor="fastapiPort">FastAPI Port</label>
+        <label htmlFor="reactJSPort">ReactJS Port</label>
         <input
           type="text"
-          id="fastapiPort"
-          value={fastapiPort}
-          onChange={(e) => setFastapiPort(e.target.value)}
+          id="reactJSPort"
+          value={reactJSPort}
+          onChange={(e) => setReactJSPort(e.target.value)}
+          placeholder="Enter ReactJS port"
         />
-        {errors.fastapiPort && <span className={styles.error}>{errors.fastapiPort}</span>}
+        {errors.reactJSPort && <span className={styles.error}>{errors.reactJSPort}</span>}
       </div>
       <div className={styles.formGroup}>
         <label htmlFor="domainName">Domain Name</label>
@@ -103,16 +90,28 @@ function FastAPIForm() {
           id="domainName"
           value={domainName}
           onChange={(e) => setDomainName(e.target.value)}
+          placeholder="Enter domain name"
         />
         {errors.domainName && <span className={styles.error}>{errors.domainName}</span>}
       </div>
-      {errors.apiError && <div className={styles.error}>{errors.apiError}</div>}
-      {successMessage && <div className={styles.success}>{successMessage}</div>}
+      <div className={styles.formGroup}>
+        <label htmlFor="databases">Databases</label>
+        <Select
+          id="databases"
+          isMulti
+          options={options}
+          value={selectedDatabases}
+          onChange={setSelectedDatabases}
+          className={styles.select}
+          classNamePrefix="select"
+        />
+        {errors.selectedDatabases && <span className={styles.error}>{errors.selectedDatabases}</span>}
+      </div>
       <button onClick={handleSave} className={styles.saveButton} disabled={isLoading}>
-        {isLoading ? <LoadingSpinner /> : 'Save'}
+        {isLoading ? 'Loading...' : 'Save'}
       </button>
     </div>
   );
 }
 
-export default FastAPIForm;
+export default ReactJSForm;
