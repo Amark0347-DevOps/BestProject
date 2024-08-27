@@ -50,7 +50,7 @@ function Dashboard() {
       <aside className={styles.sidebar}>
         <div className={styles.logo}>
           <img src={logo} alt="MyApp Logo" className={styles.logoImage} />
-          Rocket Deployment
+          Rocket Deployments
         </div>
         <nav>
           <Link to="#" onClick={handleHomeClick} className={styles.navLink}>
