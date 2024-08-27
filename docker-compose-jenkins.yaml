@@ -1,0 +1,25 @@
+version: '3.9'
+services:
+  Myjenkins:
+    image: jenkins/jenkins
+    container_name: Myjenkins
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins-data:/var/jenkins_home
+    networks:
+      - jenkins
+    environment:
+      - JENKINS_OPTS="--prefix=/jenkins"
+      - JENKINS_USER=admin
+      - JENKINS_PASS=09107811
+    restart: always
+
+volumes:
+  jenkins-data:
+    name: jenkinsVolume  # Change the name of the volume to avoid conflicts 
+
+networks:
+  jenkins:
+    name: jenkinsNetwork  # Change the name of the network to avoid conflicts    
