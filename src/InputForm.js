@@ -429,7 +429,7 @@ function InputForm() {
       });
   
       if (response.ok) {
-        setSuccessMessage('Data saved successfully');
+        setSuccessMessage('Credentials saved successfully');
         
         // Fetch updated data immediately after saving
         const fetchResponse = await fetch('http://localhost:4522/v1/get/access/secret', {
@@ -448,7 +448,7 @@ function InputForm() {
       } else if (response.status === 401) {
         navigate('/login'); // Redirect to login page if unauthorized
       } else if (response.status === 409) {
-        setErrors({ apiError: 'Data is already saved' });
+        setErrors({ apiError: 'Credentials is already saved' });
       } else {
         const errorData = await response.json();
         setErrors({ apiError: errorData.message });
@@ -529,7 +529,7 @@ function InputForm() {
           <input
             type="text"
             id="access_key"
-            placeholder=''
+            placeholder='Enter Access Key'
             value={access_key}
             onChange={(e) => setAccessKey(e.target.value)}
             className={styles.input}

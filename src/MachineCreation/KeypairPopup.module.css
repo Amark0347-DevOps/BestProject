@@ -1,0 +1,108 @@
+/* Overlay for the popup */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+  }
+  
+  /* Popup container */
+  .popup {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    max-height: 80%;
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  /* Input field styling */
+  .input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Container for buttons */
+  .buttonContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px; /* Adjust gap between buttons */
+    margin-bottom: 10px; /* Add space below button container */
+  }
+  
+  /* General button styling */
+  .button {
+    background-color: #6A11CB;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Close button styling */
+  .closeButton {
+    background-color: #dc3545; /* Red color for Close button */
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Output box for generated key */
+  .outputBox {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  /* Key container for the generated private key */
+  .keyContainer {
+    width: 100%;
+  }
+  
+  /* Styling for the displayed key material */
+  .keyMaterial {
+    white-space: pre-wrap;
+    word-break: break-word;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+  /* Copy button styling */
+  .copyButton {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Error text styling */
+  .errorText {
+    color: #dc3545; /* Red color for error messages */
+    margin-bottom: 10px;
+  }
+  

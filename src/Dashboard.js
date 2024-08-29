@@ -7,7 +7,8 @@ import ReactJSForm from './ReactJSForm'; // Import the ReactJSForm component
 import HTMLForm from './HTMLForm'; // Import the HTMLForm component
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome CSS
 import FastAPIForm from './FastAPIForm';
-import MachineForm from './MachineForm';
+import MachineForm from './MachineCreation/MachineForm';
+
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -93,6 +94,7 @@ function Dashboard() {
         </main>
       </div>
     </div>
+    
   );
 }
 
