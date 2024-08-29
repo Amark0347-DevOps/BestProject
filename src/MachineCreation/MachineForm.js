@@ -214,41 +214,43 @@ function MachineForm() {
           <input
             type="text"
             id="machineName"
+            placeholder='Enter Machine Name'
             value={machineName}
             onChange={(e) => setMachineName(e.target.value)}
             className={styles.input}
           />
           {errors.machine_name && <p className={styles.error}>{errors.machine_name}</p>}
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="machineType">Machine Type</label>
-          <select
-            id="machineType"
-            value={machineType}
-            onChange={(e) => setMachineType(e.target.value)}
-            className={styles.select}
-          >
-            <option value="">Select Machine Type</option>
-            <option value="t2.nano">t2.nano - 1 vCPU, 3 CPU Credits/hour, 0.5 GiB Mem</option>
-            <option value="t2.micro">t2.micro - 1 vCPU, 6 CPU Credits/hour, 1 GiB Mem</option>
-            <option value="t2.small">t2.small - 1 vCPU, 12 CPU Credits/hour, 2 GiB Mem</option>
-            <option value="t2.medium">t2.medium - 2 vCPU, 24 CPU Credits/hour, 4 GiB Mem</option>
-            <option value="t2.large">t2.large - 2 vCPU, 36 CPU Credits/hour, 8 GiB Mem</option>
-            <option value="t2.xlarge">t2.xlarge - 4 vCPU, 54 CPU Credits/hour, 16 GiB Mem</option>
-            <option value="t2.2xlarge">t2.2xlarge - 8 vCPU, 81 CPU Credits/hour, 32 GiB Mem</option>
-            <option value="t3.nano">t3.nano - 2 vCPU, 6 CPU Credits/hour, 0.5 GiB Mem</option>
-            <option value="t3.micro">t3.micro - 2 vCPU, 12 CPU Credits/hour, 1 GiB Mem</option>
-            <option value="t3.small">t3.small - 2 vCPU, 24 CPU Credits/hour, 2 GiB Mem</option>
-            <option value="t3.medium">t3.medium - 2 vCPU, 24 CPU Credits/hour, 4 GiB Mem</option>
-            <option value="t3.large">t3.large - 2 vCPU, 36 CPU Credits/hour, 8 GiB Mem</option>
-            <option value="t3.xlarge">t3.xlarge - 4 vCPU, 96 CPU Credits/hour, 16 GiB Mem</option>
-            <option value="t3.2xlarge">t3.2xlarge - 8 vCPU, 192 CPU Credits/hour, 32 GiB Mem</option>
-            <option value="">Select Machine Type</option>
-            {/* Options... */}
-          </select>
+        <div className={styles.inputGroup}>
+          <label htmlFor="machineType" className={styles.label}>Machine Type</label>
+          <div className={styles.customSelectWrapper}>
+            <select
+              id="machineType"
+              value={machineType}
+              onChange={(e) => setMachineType(e.target.value)}
+              className={styles.customSelect}
+            >
+              <option value="">Select Machine Type</option>
+              <option value="t2.nano">t2.nano - 1 vCPU, 3 CPU Credits/hour, 0.5 GiB Mem</option>
+              <option value="t2.micro">t2.micro - 1 vCPU, 6 CPU Credits/hour, 1 GiB Mem</option>
+              <option value="t2.small">t2.small - 1 vCPU, 12 CPU Credits/hour, 2 GiB Mem</option>
+              <option value="t2.medium">t2.medium - 2 vCPU, 24 CPU Credits/hour, 4 GiB Mem</option>
+              <option value="t2.large">t2.large - 2 vCPU, 36 CPU Credits/hour, 8 GiB Mem</option>
+              <option value="t2.xlarge">t2.xlarge - 4 vCPU, 54 CPU Credits/hour, 16 GiB Mem</option>
+              <option value="t2.2xlarge">t2.2xlarge - 8 vCPU, 81 CPU Credits/hour, 32 GiB Mem</option>
+              <option value="t3.nano">t3.nano - 2 vCPU, 6 CPU Credits/hour, 0.5 GiB Mem</option>
+              <option value="t3.micro">t3.micro - 2 vCPU, 12 CPU Credits/hour, 1 GiB Mem</option>
+              <option value="t3.small">t3.small - 2 vCPU, 24 CPU Credits/hour, 2 GiB Mem</option>
+              <option value="t3.medium">t3.medium - 2 vCPU, 24 CPU Credits/hour, 4 GiB Mem</option>
+              <option value="t3.large">t3.large - 2 vCPU, 36 CPU Credits/hour, 8 GiB Mem</option>
+              <option value="t3.xlarge">t3.xlarge - 4 vCPU, 96 CPU Credits/hour, 16 GiB Mem</option>
+              <option value="t3.2xlarge">t3.2xlarge - 8 vCPU, 192 CPU Credits/hour, 32 GiB Mem</option>
+            </select>
+            <div className={styles.customArrow}></div>
+          </div>
           {errors.machine_type && <span className={styles.error}>{errors.machine_type}</span>}
         </div>
-        <div className={styles.formGroup}>
+        <div className={styles.inputGroup}>
           <label htmlFor="keyPair">Key Pair</label>
           <select
             id="keyPair"
