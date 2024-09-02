@@ -15,6 +15,9 @@ function MachineForm() {
   const [errors, setErrors] = useState({});
   const [instances, setInstances] = useState([]); // State to hold AWS instances
   const [showPopup, setShowPopup] = useState(false); // State to control popup visibility
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  
 
   // Fetch key pairs and instances from the API when the component mounts
   useEffect(() => {
@@ -198,6 +201,34 @@ function MachineForm() {
         console.error('An error occurred while fetching instances:', error);
       }
   };
+  const handleDownloadKeyPair = async (KeyName) => {
+    setLoading(true); // Start loading state
+    setError(''); // Clear previous errors
+    
+    try {
+        const token = localStorage.getItem('token'); // Retrieve token from local storage
+        const response = await fetch(`http://localhost:4522/v1/download/keypair/${KeyName}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`, // Include Authorization header
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok.');
+        }
+
+        const result = await response.json();
+        const { data } = result;
+        
+        // Trigger the file download
+        window.location.href = data;
+    } catch (err) {
+      setError('Failed to fetch the download URL: ' + err.message);
+    } finally {
+      setLoading(false); // End loading state
+    }
+  };
 
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text)
@@ -270,7 +301,7 @@ function MachineForm() {
           {isLoading ? <LoadingSpinner /> : 'Create Machine'}
         </button>
           <button onClick={handleButtonClick} className={styles.newButton}>
-            Create Keypair
+            Create KeyPair
           </button>
         </div>
         {showPopup && (
@@ -286,11 +317,11 @@ function MachineForm() {
               <tr>
                 <th>#</th>
                 <th>Instance ID</th>
-                <th>Private IP Address</th>
-                <th>Public IP Address</th>
-                <th>Status</th>
                 <th>Name</th>
-                <th>Running Status</th>
+                <th>Private IPV4</th>
+                <th>Public IPV4</th>
+                <th>Status</th>
+                <th>Key Pair</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -299,6 +330,7 @@ function MachineForm() {
                 <tr key={instance.InstanceId}>
                   <td>{index + 1}</td>
                   <td>{instance.InstanceId}</td>
+                  <td>{instance.Name}</td>
                   <td>{instance.PrivateIpAddress}</td>
                   <td>
                     {instance.PublicIpAddress}
@@ -308,8 +340,8 @@ function MachineForm() {
                     />
                   </td>
                   <td>{instance.Status}</td>
-                  <td>{instance.Name}</td>
-                  <td>{instance.RunningStatus}</td>
+                  <td>{instance.KeyName}</td>
+                
                   <td>
                     <button 
                       onClick={() => handleStart(instance.InstanceId)}
@@ -328,6 +360,12 @@ function MachineForm() {
                       className={`${styles.actionButton} ${styles.removeTerminate}`}
                     >
                       Trash
+                    </button>
+                    <button 
+                      onClick={() => handleDownloadKeyPair(instance.KeyName)}
+                      className={`${styles.actionButton} ${styles.removeTerminate}`}
+                    >
+                      Download
                     </button>
                   </td>
                 </tr>

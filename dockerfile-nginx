@@ -1,0 +1,24 @@
+# Use the latest version of NGINX
+FROM nginx:latest
+
+# Update package list and install nano in a single RUN command to minimize layers
+RUN apt-get update && apt-get install -y nano && rm -rf /var/lib/apt/lists/*
+
+# Remove default configuration directories
+RUN rm -rf /etc/nginx/sites-available 
+RUN rm -rf /etc/nginx/sites-enabled
+
+# Comment out the line include /etc/nginx/sites-enabled/*; in nginx.conf
+RUN sed -i 's|include /etc/nginx/sites-enabled/\*;|# include /etc/nginx/sites-enabled/\*;|g' /etc/nginx/nginx.conf
+
+# Delete the default.conf file in the conf.d directory
+RUN rm -f /etc/nginx/conf.d/default.conf
+
+# Create a new configuration file in the conf.d directory
+COPY chauhan.conf /etc/nginx/conf.d/
+
+# Expose port 80
+EXPOSE 80
+
+# Start NGINX
+CMD ["nginx", "-g", "daemon off;"]

@@ -54,15 +54,22 @@
     align-items: center;
     justify-content: center;
   }
-  
+
+  .button:hover {
+    background-color: #2575fc;
+  }
   /* Close button styling */
   .closeButton {
-    background-color: #dc3545; /* Red color for Close button */
+    background-color: #fd2020; /* Red color for Close button */
     color: #fff;
     padding: 10px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+  }
+
+  .closeButton:hover {
+    background-color: #fa022b;
   }
   
   /* Output box for generated key */
@@ -99,7 +106,9 @@
     border-radius: 4px;
     cursor: pointer;
   }
-  
+  .copyButton:hover {
+    background-color: #39d65b;
+  }
   /* Error text styling */
   .errorText {
     color: #dc3545; /* Red color for error messages */

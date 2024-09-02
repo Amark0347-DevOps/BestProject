@@ -48,7 +48,7 @@ function KeypairPopup({ isVisible, onClose }) {
         setKeyMaterial(response.data.data.key_material);
         setIsKeyVisible(true);
         setIsLoading(false); // Set loading to false after showing the response
-      }, 1000);
+      }, 0);
     } catch (error) {
       console.error('Error creating keypair:', error);
       if (error.response && error.response.status === 400) {
@@ -80,7 +80,7 @@ function KeypairPopup({ isVisible, onClose }) {
   return (
     <div className={styles.overlay}>
       <div className={styles.popup}>
-        <h2>Create Keypair</h2>
+        <h2>Create New KeyPair</h2>
         <input
           type="text"
           placeholder="Enter key name"
@@ -88,14 +88,14 @@ function KeypairPopup({ isVisible, onClose }) {
           onChange={handleChangeKeyName}
           className={styles.input}
         />
-        {!isKeyNameValid && <p className={styles.errorText}>Keypair name is too long (max 10 characters).</p>}
+        {!isKeyNameValid && <p className={styles.errorText}>KeyPair Name is Too Long (max 10 characters).</p>}
         <div className={styles.buttonContainer}> {/* Container for buttons */}
           <button
             onClick={handleCreateKeypair}
             className={styles.button}
             disabled={isButtonDisabled || isLoading}
           >
-            {isLoading ? <LoadingSpinner /> : 'Create Keypair'} {/* Show spinner only if loading */}
+            {isLoading ? <LoadingSpinner /> : 'Create KeyPair'} {/* Show spinner only if loading */}
           </button>
           <button onClick={onClose} className={styles.closeButton}>
             Close

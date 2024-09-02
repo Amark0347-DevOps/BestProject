@@ -4,6 +4,8 @@ import Signup from './Signup';
 import Login from './Login';
 import Dashboard from './Dashboard';
 import KeypairCreation from './MachineCreation/KeypairPopup';
+import TerminalPage from './MachineCreation/TerminalPage';
+
 
 function App() {
   const [instances, setInstances] = useState([]);
@@ -11,6 +13,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/terminal" element={<TerminalPage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/keypair" element={<KeypairCreation />} />
         <Route path="/login" element={<Login />} />
