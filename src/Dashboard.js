@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from './Dashboard.module.css';
 import logo from './assets/logo.png'; // Adjust the path as necessary
 import InputForm from './InputForm'; // Import the InputForm component
-import ReactJSForm from './ReactJSForm'; // Import the ReactJSForm component
+import ReactJSForm from './ReactJs/ReactJSForm'; // Import the ReactJSForm component
 import HTMLForm from './HTMLForm'; // Import the HTMLForm component
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome CSS
 import FastAPIForm from './FastAPIForm';

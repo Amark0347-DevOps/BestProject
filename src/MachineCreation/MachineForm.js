@@ -241,7 +241,7 @@ function MachineForm() {
       <div className={styles.formContainer}>
         <h2 className={styles.centeredText}><i className="fas fa-server"></i> Create Machine</h2>
         <div className={styles.inputGroup}>
-          <label htmlFor="machineName">Machine Name:</label>
+          <label htmlFor="machineName">Machine Name</label>
           <input
             type="text"
             id="machineName"

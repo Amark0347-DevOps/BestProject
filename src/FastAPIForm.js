@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
-import styles from './ReactJSForm.module.css';
+import styles from './FastAPIForm.module.css';
 
 const options = [
   { value: 'mongodb', label: 'MongoDB' },
