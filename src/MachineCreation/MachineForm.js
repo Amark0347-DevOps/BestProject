@@ -4,6 +4,9 @@ import styles from './MachineForm.module.css'; // Use the same CSS module for st
 import LoadingSpinner from '../LoadingSpinner'; // Import the LoadingSpinner component
 import KeypairPopup from './KeypairPopup'; // Import the KeypairPopup component
 import { FaCopy } from 'react-icons/fa'; // Importing a copy icon from react-icons
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function MachineForm() {
   const [machineName, setMachineName] = useState('');
@@ -17,6 +20,7 @@ function MachineForm() {
   const [showPopup, setShowPopup] = useState(false); // State to control popup visibility
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  
   
 
   // Fetch key pairs and instances from the API when the component mounts
@@ -103,12 +107,12 @@ function MachineForm() {
         }),
       });
       if (response.status === 500) {
-        setSuccessMessage('Machine Name Already Exist');
+        toast.error('Machine Name Already Exists');
         // Optionally fetch instances again to refresh the table
       };
 
       if (response.ok) {
-        setSuccessMessage('Machine Created Successfully');
+        toast.success('Machine Created Successfully');
         // Optionally fetch instances again to refresh the table
         const instancesResponse = await fetch('http://127.0.0.1:4522/v1/get/machine', {
           method: 'GET',
@@ -133,23 +137,41 @@ function MachineForm() {
 
   const handleStop = async (instanceId) => {
     try {
-        const token = localStorage.getItem('token'); // Retrieve token from local storage
-        const response = await fetch(`http://127.0.0.1:4522/v1/stop/machine/${instanceId}`, {
-          method: 'POST',
+      const token = localStorage.getItem('token'); // Retrieve token from local storage
+      const response = await fetch(`http://127.0.0.1:4522/v1/stop/machine/${instanceId}`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`, // Include Authorization header
+        },
+      });
+  
+      if (response.ok) {
+        // Refresh the instance list after stopping the machine
+        const instancesResponse = await fetch('http://127.0.0.1:4522/v1/get/machine', {
+          method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`, // Include Authorization header
           },
         });
-
-        if (response.ok) {
-          const data = await response.json();
-          setInstances(data.data);
-        } else {
-          console.error('Failed to Delete The instances');
+        if (instancesResponse.ok) {
+          const data = await instancesResponse.json();
+          if (data.data[0].Status === 'terminated'){
+             toast.error("Machine Terminated");
+          }
+          
+          if (data.data[0].Status === 'stoped'){
+             toast.error("Machine Alredy Stoped");
+          }
+          
+          
+          setInstances(data.data); // Update the state with the latest instances
         }
-      } catch (error) {
-        console.error('An error occurred while fetching instances:', error);
+      } else {
+        toast.error('Failed to stop the instance');
       }
+    } catch (error) {
+      console.error('An error occurred while fetching instances:', error);
+    }
   };
 
   const handlePopupClose = () => {
@@ -162,44 +184,97 @@ function MachineForm() {
 
   const handleTerminate = async (instanceId) => {
     try {
-        const token = localStorage.getItem('token'); // Retrieve token from local storage
-        const response = await fetch(`http://127.0.0.1:4522/v1/terminate/machine/${instanceId}`, {
-          method: 'POST',
+      const token = localStorage.getItem('token'); // Retrieve token from local storage
+      const response = await fetch(`http://127.0.0.1:4522/v1/terminate/machine/${instanceId}`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`, // Include Authorization header
+        },
+      });
+  
+      if (response.ok) {
+        // Refresh the instance list after terminating the machine
+        const instancesResponse = await fetch('http://127.0.0.1:4522/v1/get/machine', {
+          method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`, // Include Authorization header
           },
         });
-
-        if (response.ok) {
-          const data = await response.json();
-          setInstances(data.data);
-        } else {
-          console.error('Failed to terminate the instance');
+        if (instancesResponse.ok) {
+          const data = await instancesResponse.json();
+          // console.log(data.data[0].Status)
+          if (data.data[0].Status === 'terminated'){
+            toast.error("Machine Terminated");
+         }
+         
+         if (data.data[0].Status === 'stoped'){
+            toast.error("Machine Alredy Stoped");
+         }
+          setInstances(data.data); // Update the state with the latest instances
         }
-      } catch (error) {
-        console.error('An error occurred while fetching instances:', error);
+      } else {
+        toast.error('Failed to terminate the instance');
       }
+    } catch (error) {
+      console.error('An error occurred while fetching instances:', error);
+    }
   };
 
+
+  const handleRefreshButton = async () => {
+    try {
+      // Get the token from localStorage
+      const token = localStorage.getItem("token");
+  
+      // Fetch the latest key pairs from your API with the Authorization header
+      const response = await fetch("http://127.0.0.1:4522/v1/get/keypairs", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`, // Include the token in the header
+        },
+      });
+  
+      const data = await response.json();
+  
+      if (data.key_pairs) {
+        // Update the keyPairs state with the latest key pairs
+        setKeyPairOptions(data.key_pairs)(data.key_pairs);
+      }
+    } catch (error) {
+      console.error("Failed to fetch key pairs:", error);
+    }
+  };
+  
   const handleStart = async (instanceId) => {
     try {
-        const token = localStorage.getItem('token'); // Retrieve token from local storage
-        const response = await fetch(`http://127.0.0.1:4522/v1/start/machine/${instanceId}`, {
-          method: 'POST',
+      const token = localStorage.getItem('token'); // Retrieve token from local storage
+      const response = await fetch(`http://127.0.0.1:4522/v1/start/machine/${instanceId}`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`, // Include Authorization header
+        },
+      });
+  
+      if (response.ok) {
+        toast.success('Machine Starting');
+        // Refresh the instance list after starting the machine
+        const instancesResponse = await fetch('http://127.0.0.1:4522/v1/get/machine', {
+          method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`, // Include Authorization header
           },
         });
-
-        if (response.ok) {
-          const data = await response.json();
-          setInstances(data.data);
-        } else {
-          console.error('Failed to start the instance');
+        if (instancesResponse.ok) {
+          const data = await instancesResponse.json();
+          setInstances(data.data); // Update the state with the latest instances
         }
-      } catch (error) {
-        console.error('An error occurred while fetching instances:', error);
+      } else {
+        toast.error('Failed To Start Machine');
       }
+    } catch (error) {
+      console.error('An error occurred while fetching instances:', error);
+    }
   };
   const handleDownloadKeyPair = async (KeyName) => {
     setLoading(true); // Start loading state
@@ -215,9 +290,10 @@ function MachineForm() {
         });
 
         if (!response.ok) {
-            throw new Error('Network response was not ok.');
+          toast.error('Network Response Was Not ok');
+          throw new Error('Network response was not ok.');
         }
-
+        toast.success('KeyPair Downloding');
         const result = await response.json();
         const { data } = result;
         
@@ -262,20 +338,20 @@ function MachineForm() {
               className={styles.customSelect}
             >
               <option value="">Select Machine Type</option>
-              <option value="t2.nano">t2.nano - 1 vCPU, 3 CPU Credits/hour, 0.5 GiB Mem</option>
-              <option value="t2.micro">t2.micro - 1 vCPU, 6 CPU Credits/hour, 1 GiB Mem</option>
-              <option value="t2.small">t2.small - 1 vCPU, 12 CPU Credits/hour, 2 GiB Mem</option>
-              <option value="t2.medium">t2.medium - 2 vCPU, 24 CPU Credits/hour, 4 GiB Mem</option>
-              <option value="t2.large">t2.large - 2 vCPU, 36 CPU Credits/hour, 8 GiB Mem</option>
-              <option value="t2.xlarge">t2.xlarge - 4 vCPU, 54 CPU Credits/hour, 16 GiB Mem</option>
-              <option value="t2.2xlarge">t2.2xlarge - 8 vCPU, 81 CPU Credits/hour, 32 GiB Mem</option>
-              <option value="t3.nano">t3.nano - 2 vCPU, 6 CPU Credits/hour, 0.5 GiB Mem</option>
-              <option value="t3.micro">t3.micro - 2 vCPU, 12 CPU Credits/hour, 1 GiB Mem</option>
-              <option value="t3.small">t3.small - 2 vCPU, 24 CPU Credits/hour, 2 GiB Mem</option>
-              <option value="t3.medium">t3.medium - 2 vCPU, 24 CPU Credits/hour, 4 GiB Mem</option>
-              <option value="t3.large">t3.large - 2 vCPU, 36 CPU Credits/hour, 8 GiB Mem</option>
-              <option value="t3.xlarge">t3.xlarge - 4 vCPU, 96 CPU Credits/hour, 16 GiB Mem</option>
-              <option value="t3.2xlarge">t3.2xlarge - 8 vCPU, 192 CPU Credits/hour, 32 GiB Mem</option>
+              <option value="t2.nano">t2.nano - 1 vCPU,  0.5 GiB Mem</option>
+              <option value="t2.micro">t2.micro - 1 vCPU,  1 GiB Mem</option>
+              <option value="t2.small">t2.small - 1 vCPU,  2 GiB Mem</option>
+              <option value="t2.medium">t2.medium - 2 vCPU,  4 GiB Mem</option>
+              <option value="t2.large">t2.large - 2 vCPU,  8 GiB Mem</option>
+              <option value="t2.xlarge">t2.xlarge - 4 vCPU,  16 GiB Mem</option>
+              <option value="t2.2xlarge">t2.2xlarge - 8 vCPU,  32 GiB Mem</option>
+              <option value="t3.nano">t3.nano - 2 vCPU,  0.5 GiB Mem</option>
+              <option value="t3.micro">t3.micro - 2 vCPU,  1 GiB Mem</option>
+              <option value="t3.small">t3.small - 2 vCPU,  2 GiB Mem</option>
+              <option value="t3.medium">t3.medium - 2 vCPU,  4 GiB Mem</option>
+              <option value="t3.large">t3.large - 2 vCPU,  8 GiB Mem</option>
+              <option value="t3.xlarge">t3.xlarge - 4 vCPU,  16 GiB Mem</option>
+              <option value="t3.2xlarge">t3.2xlarge - 8 vCPU,  32 GiB Mem</option>
             </select>
             <div className={styles.customArrow}></div>
           </div>
@@ -302,6 +378,9 @@ function MachineForm() {
         </button>
           <button onClick={handleButtonClick} className={styles.newButton}>
             Create KeyPair
+          </button>
+          <button onClick={handleRefreshButton} className={styles.newButton}>
+          <i class="fa fa-refresh" aria-hidden="true"></i>
           </button>
         </div>
         {showPopup && (
@@ -374,6 +453,7 @@ function MachineForm() {
           </table>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 }

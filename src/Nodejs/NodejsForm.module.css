@@ -1,0 +1,76 @@
+/* Container for the entire page */
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between flex items */
+    padding: 20px; /* Padding around the container */
+  }
+  
+  /* Styles for the form container */
+  .formContainer {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  /* Styles for form groups */
+  .inputGroup {
+    margin-bottom: 15px;
+  }
+  
+  .inputGroup label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  
+  /* Input fields and select elements */
+  .inputGroup input, .inputGroup select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Error message styling */
+  .error {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+  
+  /* Button container styling */
+  .buttonContainer {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    justify-content: flex-start; /* Align buttons to the left */
+    margin-top: 10px;
+  }
+  
+  /* Styles for save button */
+  .saveButton {
+    background-color: #6a11cb;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .saveButton:hover {
+    background-color: #2575fc;
+  }
+  
+  .saveButton:disabled {
+    background-color: #6a11cb;
+  }
+  
+  /* Styles for the select element */
+  .select {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  

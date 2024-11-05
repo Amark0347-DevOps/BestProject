@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Dashboard.module.css';
-import logo from './assets/logo.png'; // Adjust the path as necessary
-import InputForm from './InputForm'; // Import the InputForm component
-import ReactJSForm from './ReactJs/ReactJSForm'; // Import the ReactJSForm component
-import HTMLForm from './HTMLForm'; // Import the HTMLForm component
+import logo from '../assets/logo.png'; // Adjust the path as necessary
+import InputForm from '../Credentials/credential'; // Import the InputForm component
+import ReactJSForm from '../ReactJs/ReactJSForm'; // Import the ReactJSForm component
+import HTMLForm from '../HTML/HTML'; // Import the HTMLForm component
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome CSS
-import FastAPIForm from './FastAPIForm';
-import MachineForm from './MachineCreation/MachineForm';
-
+import FastAPIForm from '../FastAPI/FastAPIForm';
+import MachineForm from '../MachineCreation/MachineForm';
+import NodejsForm from '../Nodejs/NodejsForm'; // Adjusted import
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -24,6 +24,9 @@ function Dashboard() {
 
   const handleCredentialsClick = () => {
     setShowForm('credentials');
+  };
+  const handleNodejsClick = () => {
+    setShowForm('nodejs');
   };
 
   const handleReactJSClick = () => {
@@ -69,6 +72,9 @@ function Dashboard() {
           <Link to="#" onClick={handleReactJSClick} className={styles.navLink}>
             <i className="fab fa-react"></i> ReactJS
           </Link>
+          <Link to="#" onClick={handleNodejsClick} className={styles.navLink}>
+            <i className="fab fa-node"></i> NodeJs
+          </Link>
           <Link to="#" onClick={handleFastApiClick} className={styles.navLink}>
             <i className="fa-brands fa-python"></i> FastAPI
           </Link>
@@ -87,14 +93,14 @@ function Dashboard() {
         <main>
           {showForm === 'home' && <div>Welcome to the Home Page</div>}
           {showForm === 'credentials' && <InputForm />}
-          {showForm === 'machines' && <MachineForm/>}
+          {showForm === 'machines' && <MachineForm />}
           {showForm === 'reactjs' && <ReactJSForm />}
+          {showForm === 'nodejs' && <NodejsForm />} {/* Updated component */}
           {showForm === 'html' && <HTMLForm />}
-          {showForm === 'fastapi' && <FastAPIForm/>}
+          {showForm === 'fastapi' && <FastAPIForm />}
         </main>
       </div>
     </div>
-    
   );
 }
 

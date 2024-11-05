@@ -16,7 +16,7 @@ function Signup() {
   const [errors, setErrors] = useState({});
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
-  const [loading, setLoading] = useState(false); // Loading state
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -53,20 +53,20 @@ function Signup() {
     e.preventDefault();
     setError(null);
     setSuccess(null);
-    setLoading(true); // Set loading to true
+    setLoading(true);
 
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-      setLoading(false); // Set loading to false
+      setLoading(false);
       return;
     }
 
     try {
-      const response = await axios.post('http://localhost:4522/v1/singup', formData);
+      const response = await axios.post('http://localhost:4522/v1/signup', formData);
       if (response.status === 200) {
-        const token = response.data.token; // Assuming the token is in response.data.token
-        localStorage.setItem('token', token); // Save token to localStorage
+        const token = response.data.token;
+        localStorage.setItem('token', token);
         setSuccess('Signup successful! Redirecting to login...');
         setTimeout(() => {
           navigate('/login');
@@ -75,7 +75,7 @@ function Signup() {
     } catch (err) {
       setError(err.response?.data?.message || 'Signup failed');
     } finally {
-      setLoading(false); // Set loading to false
+      setLoading(false);
     }
   };
 
@@ -167,6 +167,9 @@ function Signup() {
           <button type="submit" className={styles.button} disabled={loading}>
             {loading ? <span className={styles.spinner}></span> : 'Sign Up'}
           </button>
+          <div className={styles.loginLink}>
+            Already have an account? <a href="/login">Login</a>
+          </div>
         </form>
       </div>
     </div>
