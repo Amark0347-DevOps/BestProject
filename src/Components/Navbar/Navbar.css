@@ -1,0 +1,135 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap');
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #1e3d58; /* Dark Blue */
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 60px;
+}
+  
+/* Navbar Left Section */
+.navbar__left {
+    display: flex;
+    padding: 0px;
+    align-items: center;
+}
+  
+.navbar__logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+  
+.logo-svg {
+    width: 40px; /* Adjust the logo size */
+    height: 40px;
+}
+  
+.logo-text {
+    margin-left: 10px; /* Spacing between logo and text */
+    font-size: 24px; /* Slightly larger text for emphasis */
+    font-weight: 700; /* Bolder text */
+    font-family: 'Poppins', sans-serif; /* A clean, modern font (ensure you import it) */
+    background: linear-gradient(90deg, #58a6ff, #ff7e79); /* Gradient effect */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Makes the gradient apply to text */
+    text-transform: uppercase;
+    letter-spacing: 2px; /* Slight spacing for a sleek look */
+    cursor: pointer; /* Pointer on hover */
+    transition: transform 0.2s ease, text-shadow 0.2s ease;
+}
+  
+.logo-text:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+    text-shadow: 0 0 10px rgba(88, 166, 255, 0.8); /* Glow effect */
+}
+
+/* Navbar Right Section */
+.navbar__right {
+    display: flex;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+}
+  
+.navbar__links {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+}
+  
+/* Apply Fredoka font to navbar links */
+.navbar__links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: 'Fredoka', sans-serif; /* Apply Fredoka font */
+    padding: 8px 15px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+  
+.navbar__links li a:hover,
+.navbar__links li.active a {
+    background-color: #2575fc; /* Highlight color */
+    color: #fff;
+}
+  
+/* Hamburger Menu (Responsive) */
+.navbar__toggle {
+    display: none;
+}
+  
+.hamburger-icon {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 5px;
+}
+  
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .navbar__right {
+        display: none;
+    }
+
+    .navbar__toggle {
+        display: flex;
+    }
+
+    .navbar__links {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+.logout-button {
+    background-color: #007bff; /* Primary blue color */
+    color: #fff; /* White text */
+    font-size: 14px; /* Adjust font size */
+    font-weight: bold; /* Bold text for visibility */
+    padding: 10px 20px; /* Add spacing for better appearance */
+    border: none; /* Remove default borders */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Change cursor to pointer */
+    transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Add subtle shadow for depth */
+  }
+  
+  .logout-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
+  }
+  
+  .logout-button:active {
+    background-color: #004085; /* Even darker blue on click */
+    transform: scale(0.95); /* Slightly shrink button on click */
+  }
+  

@@ -22,9 +22,34 @@ function Dashboard() {
     navigate('/login');
   };
 
+  const handleOverviewClick = () => {
+    setShowForm('overview');
+  };
+
+  const handleDomainClick = () => {
+    setShowForm('domain');
+  };
+
+  const handleStorageClick = () => {
+    setShowForm('storage');
+  };
+
+  const handleServicesClick = () => {
+    setShowForm('services');
+  };
+
+  const handleSettingsClick = () => {
+    setShowForm('settings');
+  };
+
+  const handleMonitoringClick = () => {
+    setShowForm('monitoring');
+  };
+
   const handleCredentialsClick = () => {
     setShowForm('credentials');
   };
+  
   const handleNodejsClick = () => {
     setShowForm('nodejs');
   };
@@ -45,57 +70,77 @@ function Dashboard() {
     setShowForm('machines');
   };
 
-  const handleHomeClick = () => {
-    setShowForm('home');
-  };
-
   return (
     <div className={styles.dashboardContainer}>
       <aside className={styles.sidebar}>
-        <div className={styles.logo}>
-          <img src={logo} alt="MyApp Logo" className={styles.logoImage} />
-          Rocket Deployments
-        </div>
         <nav>
-          <Link to="#" onClick={handleHomeClick} className={styles.navLink}>
-            <i className="fas fa-home"></i> Home
+          {/* Overview */}
+          <Link to="#" onClick={handleOverviewClick} className={styles.navLink}>
+            🏡 Overview
           </Link>
+          {/* Credentials */}
           <Link to="#" onClick={handleCredentialsClick} className={styles.navLink}>
-            <i className="fas fa-key"></i> Credentials
+            🔐 Credentials
           </Link>
+          {/* Machines */}
           <Link to="#" onClick={handleMachinesClick} className={styles.navLink}>
-            <i className="fas fa-server"></i> Machines
+            🖥️ Machines
           </Link>
+          {/* Storage */}
+          <Link to="#" onClick={handleStorageClick} className={styles.navLink}>
+            💼 Storage
+          </Link>
+          {/* Domain */}
+          <Link to="#" onClick={handleDomainClick} className={styles.navLink}>
+            🌍 Domain
+          </Link>
+          {/* Services */}
+          <Link to="#" onClick={handleServicesClick} className={styles.navLink}>
+            🔧 Services
+          </Link>
+          {/* Settings */}
+          <Link to="#" onClick={handleSettingsClick} className={styles.navLink}>
+            ⚙️ Settings
+          </Link>
+          {/* Monitoring */}
+          <Link to="#" onClick={handleMonitoringClick} className={styles.navLink}>
+            📊 Monitoring
+          </Link>
+          {/* HTML */}
           <Link to="#" onClick={handleHTMLClick} className={styles.navLink}>
-            <i className="fab fa-html5"></i> HTML
+            📄 HTML
           </Link>
+          {/* ReactJS */}
           <Link to="#" onClick={handleReactJSClick} className={styles.navLink}>
-            <i className="fab fa-react"></i> ReactJS
+            ⚛️ ReactJS
           </Link>
+          {/* NodeJs */}
           <Link to="#" onClick={handleNodejsClick} className={styles.navLink}>
-            <i className="fab fa-node"></i> NodeJs
+            🟩 NodeJs
           </Link>
+          {/* FastAPI */}
           <Link to="#" onClick={handleFastApiClick} className={styles.navLink}>
-            <i className="fa-brands fa-python"></i> FastAPI
+            🐍 FastAPI
           </Link>
+          {/* Sign Out */}
           <button onClick={handleSignOut} className={styles.signOutButton}>
-            <i className="fas fa-sign-out-alt"></i> Sign Out
+            🚪 Sign Out
           </button>
         </nav>
       </aside>
       <div className={styles.mainContent}>
-        <header className={styles.dashboardHeader}>
-          <div className={styles.logo}>
-            <img src={logo} alt="MyApp Logo" className={styles.logoImage} />
-            Rocket
-          </div>
-        </header>
         <main>
-          {showForm === 'home' && <div>Welcome to the Home Page</div>}
+          {/* Show different components based on the clicked button */}
+          {showForm === 'overview' && <div>Welcome to the Overview Page</div>}
+          {showForm === 'domain' && <div>Domain Management Page</div>}
+          {showForm === 'storage' && <div>Storage Management Page</div>}
+          {showForm === 'services' && <div>Services Management Page</div>}
+          {showForm === 'settings' && <div>Settings Page</div>}
+          {showForm === 'monitoring' && <div>Monitoring Page</div>}
           {showForm === 'credentials' && <InputForm />}
           {showForm === 'machines' && <MachineForm />}
           {showForm === 'reactjs' && <ReactJSForm />}
-          {showForm === 'nodejs' && <NodejsForm />} {/* Updated component */}
+          {showForm === 'nodejs' && <NodejsForm />}
           {showForm === 'html' && <HTMLForm />}
           {showForm === 'fastapi' && <FastAPIForm />}
         </main>

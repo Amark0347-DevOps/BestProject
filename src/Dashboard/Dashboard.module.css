@@ -1,4 +1,4 @@
-/* src/Dashboard.module.css */
+
 .dashboardContainer {
     display: flex;
     min-height: 100vh;
@@ -37,7 +37,7 @@
   }
   
   .navLink:hover {
-    background-color: #444;
+    background-color: #2575fc;
   }
   
   .signOutButton {

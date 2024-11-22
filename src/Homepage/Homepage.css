@@ -1,0 +1,52 @@
+/* Container for the whole page */
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Keep content at the top */
+    align-items: center;
+    width: 100%;
+    min-height: 100vh; /* Ensure the content takes at least full screen height */
+    margin: 0;
+    padding-bottom: 50px; /* Ensure space between images and footer */
+  }
+  
+  /* Styling the image gallery */
+  .home__image-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;  /* Adds space between images */
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 20px;  /* Adds padding around the gallery */
+  }
+  
+  /* Styling individual images */
+  .home__image {
+    width: 100%;
+    max-width: 1000px;  /* Maximum image width */
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  /* Optional: Styling the footer */
+  .footer {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    background-color: #1e3d58;
+    color: white;
+  }
+  
+  /* Responsive styles for mobile devices */
+  @media (max-width: 768px) {
+    .home__image {
+      width: 100%; /* Ensure the images take up full width on smaller screens */
+    }
+  
+    .footer {
+      padding: 15px;
+    }
+  }
+  

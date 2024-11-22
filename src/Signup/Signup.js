@@ -5,12 +5,9 @@ import styles from './Signup.module.css';
 
 function Signup() {
   const [formData, setFormData] = useState({
-    username: '',
-    name: '',
-    password: '',
-    phone: '',
     email: '',
-    occupation: '',
+    phone: '',
+    password: ''
   });
 
   const [errors, setErrors] = useState({});
@@ -82,62 +79,9 @@ function Signup() {
   return (
     <div className={styles.container}>
       <div className={styles.form}>
-        <h2>Sign Up</h2>
+        <h2>Let's Register</h2>
         <form onSubmit={handleSubmit}>
-          <div className={styles.formGroup}>
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              placeholder="Username"
-              value={formData.username}
-              onChange={handleChange}
-              required
-            />
-            {errors.username && <div className={styles.error}>{errors.username}</div>}
-          </div>
-          <div className={styles.formGroup}>
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-            {errors.name && <div className={styles.error}>{errors.name}</div>}
-          </div>
-          <div className={styles.formGroup}>
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-            {errors.password && <div className={styles.error}>{errors.password}</div>}
-          </div>
-          <div className={styles.formGroup}>
-            <label htmlFor="phone">Phone</label>
-            <input
-              type="text"
-              id="phone"
-              name="phone"
-              placeholder="Phone"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-            />
-            {errors.phone && <div className={styles.error}>{errors.phone}</div>}
-          </div>
-          <div className={styles.formGroup}>
-            <label htmlFor="email">Email</label>
+        <div className={styles.formGroup}>
             <input
               type="email"
               id="email"
@@ -150,17 +94,28 @@ function Signup() {
             {errors.email && <div className={styles.error}>{errors.email}</div>}
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="occupation">Occupation</label>
             <input
               type="text"
-              id="occupation"
-              name="occupation"
-              placeholder="Occupation"
-              value={formData.occupation}
+              id="phone"
+              name="phone"
+              placeholder="Phone"
+              value={formData.phone}
               onChange={handleChange}
               required
             />
-            {errors.occupation && <div className={styles.error}>{errors.occupation}</div>}
+            {errors.phone && <div className={styles.error}>{errors.phone}</div>}
+          </div>
+          <div className={styles.formGroup}>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            {errors.password && <div className={styles.error}>{errors.password}</div>}
           </div>
           {error && <div className={styles.error}>{error}</div>}
           {success && <div className={styles.success}>{success}</div>}
