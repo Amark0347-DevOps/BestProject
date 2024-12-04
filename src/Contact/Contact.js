@@ -52,7 +52,7 @@ const ContactForm = () => {
             required
           ></textarea>
           <button type="submit" className="button">
-            aman
+            ama
           </button>
         </form>
       </div>
